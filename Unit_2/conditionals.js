@@ -184,3 +184,52 @@ switch(true) {
     default:
         console.log("That is not a grade value...");
 }
+
+
+// ? Ternary
+/* 
+    Always a If/Else style conditional at minimum.
+    Structure:
+    expression ? true : false;
+*/
+
+// let expression = true;
+let expression = false;
+expression ? console.log("Runs true") : console.log("Runs false");
+
+let newNum = 6;
+
+newNum > 0 ? console.log("Yes, greater than 0.") : console.log("No, less than 0.");
+
+// as an if/else
+if (newNum > 0) {
+    console.log("yes");
+  } else {
+    console.log("no");
+  }
+
+// ? Else/If
+
+let anotherNum = 28;
+
+if(anotherNum == 0) {
+    console.log("Hello!");
+} else if (anotherNum > 0) {
+    console.log("Hey There.");
+} else {
+    console.log("Goodbye.");
+}
+
+anotherNum == 0
+  ? console.log("Hello")
+  : anotherNum > 0
+  ? console.log("hi")
+  : console.log("goodbye again");
+
+
+let numOne = 5;
+// let numOne = -5;
+let numTwo = 2;
+
+let value = numOne + numTwo > 1 ? numOne + numTwo : 0;
+console.log(value);
