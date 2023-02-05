@@ -100,3 +100,87 @@ if(!rain) {
 } else {
     console.log("Get your jacket.");
 }
+
+// ? Switch Statement
+/* 
+    keywords:
+        - switch
+        - case
+        - break
+            - takes us out of our code block
+        - default
+            - run if no cases match
+
+    Structure:
+    switch(expression) {
+        case ... :
+            return;
+            break;
+        case ... :
+            return;
+            break;
+        case ... :
+            return;
+            break;
+        default:
+            return;
+    }
+*/
+
+let officeCharacter = "Jim";
+
+switch (officeCharacter) {
+  case "Michael":
+    console.log("My mind is going a mile an hour.");
+    break;
+  case "Dwight":
+    console.log("Perfectenschlag");
+    break;
+  case "Jim":
+    console.log("Bears. Beets. Battlestar Galactica");
+    break;
+  case "Pam":
+    console.log("Yup");
+    break;
+  default:
+    console.log(`I'm sorry, ${officeCharacter}, but do I know you?`);
+}
+
+// String interpolation: using a variable in a string with backticks, dollar sign, and {}
+let myName = "Kate";
+let bff = "Ben";
+console.log(`My name is ${myName} and my best friendo is ${bff}! `); // interpolation happens with use of backtick and ${}
+console.log("My name is ${myName} and my best friendo is ${bff}!") // Just a normal string
+
+// let num = 5;
+let num = -7;
+// let num = -20;
+
+switch(true) {
+    case num < 0 && num > -10:
+        console.log("Case 1 ran.");
+        break;
+    case num > 0:
+        console.log("Case 2 ran.");
+        break;
+    default:
+        console.log("Default ran, no case worked.");
+        break;
+}
+
+let grade = "B";
+switch(true) {
+    case grade == "A":
+    case grade == "B":
+        console.log("Great job!");
+        break;
+    case grade == "C":
+        console.log("Doing well, but maybe study a bit more.");
+        break;
+    case grade == "D":
+    case grade == "F":
+        console.log("Uh, I would really start studying...");
+        break;
+    default:
+        console.log("That is not a grade value...");
+}
