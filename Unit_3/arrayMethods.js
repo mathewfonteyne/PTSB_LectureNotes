@@ -88,3 +88,137 @@ function eatMango(fruit) {
 console.log("Filter with function example: ", filteredFruitFunctionEx);
 
 // console.log(eatMango("Baseball")) // demo function
+
+//----------------------------------------------
+
+//? .forEach()
+/* 
+    Runs three arguments:
+    - The value
+    - The index
+    - The array object itself
+
+    - forEach() helps us to iterate over an array performing a function once per element in the array via a callback function.
+    - Is not executed for empty elements.
+    - Does not change the original array
+*/
+
+let newFoodList = ["apple", "pear", "mushrooms", "cheese", "spaghetti"];
+
+// for (let i = 0; i < newFoodList.length; i++) {
+//     console.log(newFoodList[i]);
+// }
+
+// arrow function with concise body
+// newFoodList.forEach((item) => console.log("ForEach Method: ", item));
+
+// arrow function with block body
+newFoodList.forEach((item, i) => {
+    console.log("ForEach with Index:", item, i);
+})
+
+// Declarative Function
+newFoodList.forEach(function (item) {
+    console.log("Declaration Sample: ", item);
+})
+
+// Build a function to console.log item
+// Separating function from forEach, works
+function displayFoodItem(foodThing) {
+    console.log(`Function outside of forEach: ${foodThing}.`);
+}
+
+// Pass our forEach method the function
+newFoodList.forEach(displayFoodItem);
+
+//----------------------------------------------------------------
+
+//? .map()
+/* 
+    - Creates a new array from calling a function for every array element
+    - Calls the function once oer element in an array
+    - Does nots execute the function for empty elements
+    - Does not change the original array
+*/
+
+// Populated by for loop
+let numArray = [];
+// Populate by using .map() on numArray
+let fizzBuzzArray = [];
+
+for (let k = 0; k <= 25; k++) {
+    numArray.push(k);
+}
+// Checking if numArray was populated
+console.log("numArray: ", numArray);
+
+// Simple ex first
+// numArray.map((x) => fizzBuzzArray.push(x));
+numArray.map((x) => fizzBuzzArray.push(x + 5));
+
+// If divisible by 3, print fizz, if divisible by 5, print buzz, if divisible by 3 and 5, print # (push to fizzBuzzArray)
+numArray.map((x) => {
+    // Use a conditional to check division
+    if (x % 15 === 0) {
+        fizzBuzzArray.push(x)
+    } else if (x % 3 === 0) {
+        fizzBuzzArray.push("Fizz");
+    } else if (x % 5 === 0) {
+        fizzBuzzArray.push("Buzz");
+    }
+})
+
+// Check if fizzBuzzArray populated
+console.log("fizzBuzzArray: ", fizzBuzzArray);
+
+// ? ---------- map vs forEach example ------------
+
+let mainArr = [1, 2, 3, 4];
+
+// .forEach() does not return anything, performs an action on each item, does not return a value
+let forEachEx = mainArr.forEach((i) => i);
+console.log("ForEach Example: ", forEachEx);
+
+// .map() returns a new array, perform action & creates/returns new value
+// let mapEx = mainArr.map((i) => i);
+let mapEx = mainArr.map((i) => i + 3);
+console.log("Map Ex: ", mapEx);
+
+let secondMap = mapEx.map((i) => i + 5);
+console.log("Second Map Ex: ", secondMap);
+console.log(mainArr);
+
+// --------------------------------
+
+//? .find()
+/* 
+  - Executes a function for each array element and returns the value of the first element that passes a test.
+  - Returns undefined if no elements are found.
+  - Does not execute the function for empty elements.
+  - Does not change the original array.
+*/
+
+let tmnt = ["Mikey", "Donnie", "Leo", "Raph", "Splinter", "Shredder", "Baxter"];
+
+let character = "Leo";
+console.log(
+    "Find Ex 1: ",
+    tmnt.find((c) => c === character)
+);
+
+character = "April";
+console.log(
+    "Find Ex 2: ",
+    tmnt.find((c) => c === character)
+);
+
+character = "Splinter"; // find will return true for Splinter versus the value Splinter because we checked all items via including the index
+console.log(
+    "Find Ex 3: ",
+    tmnt.find((c, i) => console.log(
+        "Character: ",
+        c === character,
+        "Index: ",
+        i
+    ))
+);
