@@ -136,7 +136,7 @@ newFoodList.forEach(displayFoodItem);
 //? .map()
 /* 
     - Creates a new array from calling a function for every array element
-    - Calls the function once oer element in an array
+    - Calls the function once per element in an array
     - Does nots execute the function for empty elements
     - Does not change the original array
 */
