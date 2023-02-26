@@ -127,7 +127,7 @@ console.log(`Final Cost: $${calcTip(dinnerBill)}`);
 console.log(`With a tip of $${dinnerBill.tip.toFixed(2)}`);
 
 //--------------------
-//* Polymorphism \
+//* Polymorphism 
 /* 
     - How objects respond in relationship from child to parent.
     - All children/siblings can use the methods of the parent.
