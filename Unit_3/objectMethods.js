@@ -35,7 +35,7 @@ console.log("Values: ", Object.values(theSimpsons));
 // * Object.create(), uses an existing object to frame out an new object, we use a variable to store the base of the object creation
 
 const futurama = Object.create(theSimpsons);
-// console.log(futurama);
+console.log(futurama);
 futurama.id = 2;
 futurama.est = 1999;
 // console.log(futurama);
