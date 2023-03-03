@@ -168,5 +168,5 @@ newListItem.innerText = "New Item Test";
 // Styling or any other attributes are not set to tis "new element" that was created
 ul.appendChild(newListItem);
 
-// We can see how the other li elements are different via the console
+// We can see how the other li elements are different via the console.
 console.log(li);
