@@ -1,10 +1,17 @@
+
+/* 
+    https://www.transparenttextures.com/
+*/
+
 body {
+    background-color: #4300a8;
+background-image: url("https://www.transparenttextures.com/patterns/clean-gray-paper.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
     display: grid;
     grid-template: repeat(8, 12.5%) / repeat(4, 25%);
     height: 100vh;
     margin: 0;
     overflow-y: hidden;
-    background-color: gainsboro;
 }
 
 /* HEADER */
