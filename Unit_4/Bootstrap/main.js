@@ -3,9 +3,9 @@
 
         + Make needed global variables
         + Build Fetch to test the API endpoint
-        - Make an array variable to hold recipes
-        - Connect to the DOM of the HTML (button in nav, divs for the cards)
-        - Build a function to display random recipe card
+        + Make an array variable to hold recipes
+        + Connect to the DOM of the HTML (button in nav, divs for the cards)
+        + Build a function to display random recipe card
         - Build a function to display the deck of recipes
 */
 
@@ -13,8 +13,16 @@
 const url = "https://api.spoonacular.com/recipes/random";
 const apiKey = "7cba6ededf3e4c0faa99e52dac68178d";
 let buildURL = `${url}/?apiKey=${apiKey}`;
+let storedRecipes = [];
 // DOM Elements
 const searchForm = document.querySelector("#search-form");
+
+// Function to properly append children/elements
+const removeElements = (element) => {
+    while (element.firstChild) {
+        element.removeChild(element.firstChild)
+    }
+}
 
 // Build function for Displaying Random Recipe single card
 const displayRandomCard = recipe => {
@@ -23,9 +31,7 @@ const displayRandomCard = recipe => {
     const randomCard = document.querySelector(".random-card");
 
     // Will replace cards versus letting them stack
-    while(randomCard.firstChild) {
-        randomCard.removeChild(randomCard.firstChild);
-    }
+    removeElements(randomCard);
 
     //* Create Elements
     let card = document.createElement('div');
@@ -46,6 +52,12 @@ const displayRandomCard = recipe => {
     title.textContent = recipe.title;
     btn.className = 'btn btn-success';
     btn.textContent = "Add Recipe";
+    btn.onclick = () => {
+        // When the button is clicked: push the recipe object to storedRecipe array
+        storedRecipes.push(recipe);
+        // Run the display stored function
+        saveRecipeTable();
+    };
 
     //* Attach Elements
     body.appendChild(title);
@@ -55,9 +67,56 @@ const displayRandomCard = recipe => {
     card.appendChild(body);
 
     randomCard.appendChild(card);
-}
+};
 
 // Build function for our saved our saved recipes
+const saveRecipeTable = () => {
+    // console.log("Saved Recipe Function: array - ", storedRecipes);
+
+    let keptCards = document.getElementById("kept-cards");
+
+    removeElements(keptCards);
+
+    storedRecipes.map(recipeObj => {
+
+    
+
+    // Create Elements
+    let div = document.createElement("div");
+    let card = document.createElement("div");
+    let img = document.createElement("img");
+    let cBody = document.createElement("div");
+    let cTitle = document.createElement("h5");
+    let p = document.createElement("p");
+    let a = document.createElement("a");
+
+    // Assign attributes
+    div.className = "col";
+    card.className = "card";
+    img.className = "card-img-top";
+    img.src = recipeObj.img;
+    img.alt = recipeObj.title;
+    cBody.className = "card-body";
+    cTitle.className = "card-title";
+    cTitle.textContent = recipeObj.title;
+    p.className = "card-text";
+    a.href = recipeObj.src;
+    a.target = "_blank";
+    a.textContent = "Link to Recipe";
+
+    // Append
+    p.appendChild(a);
+    cBody.appendChild(cTitle);
+    cBody.appendChild(p);
+    card.appendChild(img);
+    card.appendChild(cBody);
+    div.appendChild(card);
+
+    keptCards.appendChild(div);
+
+    });
+
+};
 
 // Event Listener
 searchForm.addEventListener("submit", e => {
