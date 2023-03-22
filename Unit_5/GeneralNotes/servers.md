@@ -63,6 +63,14 @@ To be clear:
 - An API provides access to the server.
 - A server is an application that's locally saved in your system, even a physical device.
 
+## MVC
+- Stands for Model View Controller
+- Architecture pattern(structure in which they are written/coded) that helps our Separation of Concerns
+- Model: Database schematic, the blueprint for our data (we dictate what created data looks like/it's datatype)
+- View: browser, Postman, etc. (what the users see)
+  - Application that interface with the server.
+- Controller: Part of the server application which handles logic. (How we build our logic within the server, we code and create what routes can be used, and what they do.)
+
 
 ### Visual Examples:
 
