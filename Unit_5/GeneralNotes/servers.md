@@ -53,6 +53,25 @@ This allows us to create our own routes and endpoints to perform CRUD functional
 
 ---
 
+## API vs. Server
+
+We've talked about APIs and Servers in a general sense a lot together.
+To be clear:
+
+- An API and the Server are two different things
+- An API is an Application Programming Interface, which is a way to provide information for other applications (communication among applications, ex. the front end web page can communicate with the server).
+- An API provides access to the server.
+- A server is an application that's locally saved in your system, even a physical device.
+
+
+### Visual Examples:
+
+![Example 1](./assets/rest-api-model.png)
+
+![Example 2](./assets/API.png)
+
+---
+
 What does it all mean??
 
 The Flow with Words:
