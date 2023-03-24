@@ -52,6 +52,10 @@ app.use(express.json());
 ```
 This provides us access JSON files throughout our routes.
 
+
+---
+
+
 ## MVC
 - Stands for Model View Controller
 - Architecture pattern(structure in which they are written/coded) that helps our Separation of Concerns
@@ -59,3 +63,14 @@ This provides us access JSON files throughout our routes.
 - View: browser, Postman, etc. (what the users see)
   - Application that interface with the server.
 - Controller: Part of the server application which handles logic. (How we build our logic within the server, we code and create what routes can be used, and what they do.)
+
+
+---
+
+## Middleware
+- A function that accesses the request and response
+
+- Has a call stack
+  - request
+  - response
+  - next
