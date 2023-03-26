@@ -11,6 +11,8 @@ const PORT = 4000;
 const practiceController = require("./controller/practice.controller");
 // Importing in the auth controller routes for the apps use/reference
 const auth = require("./controller/auth.controller");
+//
+const routes = require("./controller/routes.controller");
 // Require in the index.js from helpers(./helpers) w/ object destructuring
 const { logTime } = require("./helpers");
 
@@ -41,6 +43,9 @@ app.use("/practice", practiceController);
 
 // Building route to auth controller: http://localhost:4000/todo
 app.use("/todo", auth);
+
+//Route to routes controller: http://localhost:4000/routes
+app.use("/routes", routes);
 
 // Create a method that "listens" for us spinning up/starting our application
 // This will need our PORT # and a callback function
