@@ -28,4 +28,39 @@ router.post("/register", (req, res) => {
   }
 });
 
+/* 
+  Use the URL of the page to query something and get a response
+
+  This has particular syntax(symbols)
+  - Anything after the endpoint can be extracted from it.
+        ex: /todo/query/?firstName="John"
+
+  - If querying multiple properties, we use the "&" to dive them
+
+  Build a query in GET route:
+*/
+router.get("/query/", (req, res) => {
+  // console.log(req.query); // an object of the key and value after the second "/" { firstName: '"Mathew"' }
+
+  try {
+    const { firstName, lastName, email, password } = req.query;
+    // values passed within URL need to match
+    // ex: /query/?firstName=John&lastName=Doe  etc.
+
+    res.status(200).json({
+      status: "New user created!",
+      results: {
+        first: firstName,
+        last: lastName,
+        email: email,
+      },
+    });
+  } catch (err) {
+    res.status(500).json({
+      results: "Rejected",
+      error: err,
+    });
+  }
+});
+
 module.exports = router;
