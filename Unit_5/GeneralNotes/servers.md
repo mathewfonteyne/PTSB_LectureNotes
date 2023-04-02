@@ -51,6 +51,8 @@ This allows us to create our own routes and endpoints to perform CRUD functional
 - This tells our local repository to ignore the node_modules folder when we push and backup our code to GitHub
 - When cloning down a project that ignores items: run the command "npm install" to acquire all dependencies/files needed
 
+4. To double check that we can use the command "nodemon" to start the server, run the command `npm install --save-dev nodemon`
+
 ---
 
 ## API vs. Server
@@ -64,13 +66,13 @@ To be clear:
 - A server is an application that's locally saved in your system, even a physical device.
 
 ## MVC
+
 - Stands for Model View Controller
 - Architecture pattern(structure in which they are written/coded) that helps our Separation of Concerns
 - Model: Database schematic, the blueprint for our data (we dictate what created data looks like/it's datatype)
 - View: browser, Postman, etc. (what the users see)
   - Application that interface with the server.
 - Controller: Part of the server application which handles logic. (How we build our logic within the server, we code and create what routes can be used, and what they do.)
-
 
 ### Visual Examples:
 
