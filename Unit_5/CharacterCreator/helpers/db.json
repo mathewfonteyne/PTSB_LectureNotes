@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "Simon",
-    "class": "Jester",
+    "classType": "Jester",
     "age": 32,
     "race": "Halfling",
     "npc": false,
