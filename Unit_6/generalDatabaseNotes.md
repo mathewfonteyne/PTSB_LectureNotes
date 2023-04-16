@@ -141,3 +141,36 @@ const token = jwt.sign({ id: user._id }, "secret message", {
 - Options sets (expiration details)
   - represents/details seconds or a strings describing a time span for the token to be valid/when to expire
     - ex: `"2 days"` or `"10h"`
+
+<br>
+
+# CRUD Methods w/ MongoDB
+
+Just as we had endpoints that allowed us to preform CRUD methods on data going to our JSON file, we will be building the same routes **but** to affect data stored in the DB.
+
+Mongoose and MongoDB provides us with methods ( .example() ) to make affecting data in the database possible and simple:
+
+### .save()
+
+- Allows us to take our model's new instance and store it in the database
+- Most often used with our POST endpoint to create a data document in the DB.
+- Saves the document(the object we just constructed with req.body) by inserting a new document into the database.
+- [Mongoose Docs: .save()](https://mongoosejs.com/docs/api/document.html#document_Document-save)
+
+### .findOne()
+
+- Method used on a collection, ex: Movie.findOne()
+- Used most often with GET endpoints for getting one item.
+- Returns one document the satisfies the specified query criteria from the collection.
+- It has 3 optional parameters, with the first being `query` which specifies how/what filtering to use for selection.
+- When called with no parameters, it will return a single document from the collection.
+- [MongoDB Docs: .findOne()](https://www.mongodb.com/docs/manual/reference/method/db.collection.findOne/)
+
+### .find()
+
+- Method used on a collection, ex: Movie.find()
+- Used most often with GET endpoints for get all or get by type.
+- Returns a cursor (a pointer to the result/documents so we can retrieve the documents) to the selected documents in a collection.
+- Has 3 optional parameters, with the first being `query` which specifies how/what filtering to use for selection.
+- When called with no parameters, returns all documents from a collection.
+- [MongoDB Docs: .find()](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/)
