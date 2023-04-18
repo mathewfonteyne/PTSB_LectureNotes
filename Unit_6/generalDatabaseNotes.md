@@ -174,3 +174,39 @@ Mongoose and MongoDB provides us with methods ( .example() ) to make affecting d
 - Has 3 optional parameters, with the first being `query` which specifies how/what filtering to use for selection.
 - When called with no parameters, returns all documents from a collection.
 - [MongoDB Docs: .find()](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/)
+
+### .findOneAndUpdate()
+
+- Method used on a collection, ex: Movie.findOneAndUpdate()
+- Used most often with PUT or PATCH endpoints for updating documents in the DB.
+- Updates a single document based on the filter and sort criteria.
+- We care about using **these 3 parameters** (has many optional ones):
+  - a filter query
+  - an updated object
+  - an object detailing a boolean value as to whether we want the updated document returned right away (allows us to view the updated document)
+  - Ex: `const returnOption = {new: true};`
+- [MongoDB Docs: .findOneAndUpdate()](https://www.mongodb.com/docs/manual/reference/method/db.collection.findOneAndUpdate/)
+
+<br>
+
+> <br>
+>
+> ## PUT vs PATCH
+>
+> MongoDB handles using both PUT and PATCH very effectively.
+>
+> ### PUT
+>
+> - Considers the complete document being updated.
+> - Used when needing to modify the document completely.
+> - Can be used to update just one field within the document BUT can cause issues.
+> - In short: PUT can work when updating one field (or key) within a document but may not be 100%. Used mainly to alter the whole document.
+>
+> ### PATCH
+>
+> - Considers individual fields within the Document.
+> - Suggested to use when updating just a portion of the document instead of the entire data within it.
+> - In short: PATCH isn't meant to alter the complete document but individual values within it.
+>
+> <br>
+> <br>

@@ -138,7 +138,31 @@ router.get("/genre/:genre", async (req, res) => {
   }
 });
 //TODO PATCH One
-
+router.patch("/:id", async (req, res) => {
+  try {
+    //1. Pull value from parameter
+    const { id } = req.params;
+    //2. Pull data from the body.
+    const info = req.body;
+    const returnOption = { new: true };
+    //3. Use method to locate document based off ID and pass in new information.
+    //* findOneAndUpdate(query, document, options)
+    // returnOptions allows us to view the updated document
+    const update = await Movie.findOneAndUpdate(
+      { _id: id },
+      info,
+      returnOption
+    );
+    // if (!update) throw new Error("ID Not Found!");
+    //4. Respond to client.
+    res.status(200).json({
+      message: "Successfully Updated!",
+      update,
+    });
+  } catch (err) {
+    errorResponse(res, err);
+  }
+});
 //TODO Delete One
 
 module.exports = router;
