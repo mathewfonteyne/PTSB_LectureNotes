@@ -164,5 +164,23 @@ router.patch("/:id", async (req, res) => {
   }
 });
 //TODO Delete One
-
+router.delete("/:id", async (req, res) => {
+  try {
+    //1. Capture ID
+    const { id } = req.params;
+    //2. use delete method to locate and remove based off ID
+    const deletedMovie = await Movie.deleteOne({ _id: id });
+    // if (!deletedMovie) throw new Error("No Movie Found!");
+    //3. Respond to Client with a ternary
+    deletedMovie.deletedCount
+      ? res.status(200).json({
+          message: "Successfully Deleted!",
+        })
+      : res.status(404).json({
+          message: "No Movie in the collection was found!",
+        });
+  } catch (err) {
+    errorResponse(res, err);
+  }
+});
 module.exports = router;

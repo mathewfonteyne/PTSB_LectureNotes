@@ -187,6 +187,20 @@ Mongoose and MongoDB provides us with methods ( .example() ) to make affecting d
   - Ex: `const returnOption = {new: true};`
 - [MongoDB Docs: .findOneAndUpdate()](https://www.mongodb.com/docs/manual/reference/method/db.collection.findOneAndUpdate/)
 
+### .deleteOne()
+
+- Method used on a collection, ex. Movie.deleteOne()
+- Used with DELETE endpoint to delete documents in the DB.
+- Removes a single document from a collection.
+- Requires it's first parameter `filter` (has many optional ones):
+  - Requires a query as its argument to specify the deletion criteria
+- This will return back an object that holds a few values that we can assess:
+
+  - Based off the key: deletedCount.
+  - This provides back a numeric value as to how many records were deleted. (We can check this condition to create a conditional: If zero = false / otherwise provide a 200.)
+
+- [MongoDB Docs: .deleteOne()](https://www.mongodb.com/docs/manual/reference/method/db.collection.deleteOne/)
+
 <br>
 
 > <br>
