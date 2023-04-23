@@ -264,14 +264,14 @@ Validate Session is a middleware process that helps us (the sever/devs) verify i
 - Respond as necessary depending on the token provided.
 
 3. Update the code in our movie.model.js to include the user ID (so every movie will expect to have a user ID tied to it).
-4. Export our validateSession function and import it where necessary(app.js file _or_ individual routes).
+4. Export our validateSession function and import(require) it where necessary(app.js file _or_ individual routes).
 
 > #### Two ways to do this^ (#4):
 >
 > Import validate session and add it to app.js file:
 >
 > - We can encompass a complete controller by requiring our validate session above the route itself.
-> - This means ALL routes within any controllers below it will run this middle function.
+> - This means ALL routes within any controllers below it will run this middleware function.
 > - Remember JS still reading top to bottom so routes below validateSession need a user to be logged in before movie endpoints can be used.
 >
 > Import and add validate session directly in the route endpoints (movie.controller.js):

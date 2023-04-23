@@ -9,6 +9,10 @@ const log = console.log;
 // ----------- Controllers: ------------
 const users = require("./controllers/user.controller");
 const movies = require("./controllers/movie.controller");
+
+// -------------------- Middleware: ----------------
+const validateSession = require("./middleware/validate-session");
+
 // Require in the mongoose middleware, pulled/used from node_modules
 const mongoose = require("mongoose");
 // Create a variable for our connection address variable from the .env
@@ -25,7 +29,7 @@ Use middleware handled/made by mongoose:
 */
 mongoose.connect(`${MONGO}/moviedb`);
 
-// Create a vasriable that is an event listener to check if connected
+// Create a variable that is an event listener to check if connected
 const db = mongoose.connection;
 
 // Use the above variable to trigger event listener to check connection
@@ -37,6 +41,11 @@ app.use(express.json());
 // -------------- Routes to Controllers ----------------
 // http://localhost:4000/user
 app.use("/user", users);
+
+// One way to implement validate session, directly in app.js;
+// All routes below will require validation(logged in user w/ valid token) when used this way
+// app.use(validateSession);
+
 // http://localhost:4000/movies
 app.use("/movies", movies);
 
