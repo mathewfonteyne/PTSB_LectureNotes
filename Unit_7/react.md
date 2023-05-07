@@ -170,3 +170,130 @@ This can give us the power to use js methods and logic to make many components!
 >
 > <br>
 > <br>
+
+# React Extension
+
+**React Snippets**: This helps us make components quickly with a simple emmet-like command!
+
+dsznajder.es7-react-js-snippets
+[docs](https://github.com/ults-io/vscode-react-javascript-snippets/blob/HEAD/docs/Snippets.md)
+
+Quick Commands
+
+- rfce
+  - React Functional Component Export
+- rfc
+  - React Functional Component (default export)
+
+> Note: Automatically names our component based off the file name (you can change or edit if needed but that's why file names done correctly can make your job easier.)
+> <br># React Extension
+> **React Snippets**: This helps us make components quickly with a simple emmet-like command!
+
+dsznajder.es7-react-js-snippets
+[docs](https://github.com/ults-io/vscode-react-javascript-snippets/blob/HEAD/docs/Snippets.md)
+
+Quick Commands
+
+- rfce
+  - React Functional Component Export
+- rfc
+  - React Functional Component (default export)
+
+> Note: Automatically names our component based off the file name (you can change or edit if needed but that's why file names done correctly can make your job easier.)
+> <br>
+
+# State
+
+**State** helps the program/us modify data based on a condition. It allows us to modify data that changes/needs to be able to change.
+
+- ex:
+  - offline/online status
+  - session token storage
+- Utilizes React Hooks (useState is a built in React Hook)
+  - Hooks are functions that let you “hook into” React state and lifecycle features from function components.
+- It requires to be imported:
+  - `import { useState } from 'react'`
+
+> <br>
+>
+> **Why this matters:**
+>
+> - React is a programming paradigm: Programming paradigms are different ways or styles in which a given program or programming language can be organized.
+>   - ^That means we have to tell React how to behave/be organized.
+> - React is **Declarative**, which means that we can create components and React handles the procedures for us.
+> - DOM Manipulation is considered **Imperative**, it is procedural in nature: This means that we have have to go through specific procedures in order to change anything (select elements, provide values, append, etc).
+>
+> State via useState() allows us to bridge that gap.
+>
+> <br>
+
+## `useState()`
+
+The useState() hook is an object that we are destructuring.
+
+- It holds a variable and a function that handles updating the variable associated with it.
+- The hook can hold onto an initial value.
+- Structure:
+  - `keyword [ variable, function ] = hook(initial value);`
+  - The Process (^above broken down into the logic happening behind the scenes):
+
+```jsx
+function useState(startingData) {
+  function updateState(newData) {
+    startingData = newData;
+  }
+  return [startingData, updateState];
+}
+```
+
+A true example of what we will see and use:
+
+```jsx
+// An example with a string as the starting data type
+const [names, setName] = useState("Frodo");
+
+// An example with an int as the starting data type
+const [count, setCount] = useState(0);
+```
+
+## Changing State
+
+What if we want to update our information that is being held in our state?
+
+- Unfortunately, we are unable to modify our props.
+- _However_, we can utilize the **functions** to update the props!
+  --> `keyword [ variable, function ] = hook(initial value);`
+
+## Re-rendering
+
+We can use a callback function to help with rendering processes.
+
+- useState can take raw value but also a callback function.
+
+ex:
+
+```jsx
+const [count, setCount] = useState(0); // raw value
+const [count, setCount] = useState(() => 0); // CB Function
+```
+
+- Callback function renders initial value ONCE.
+
+We have another means that we can utilize to help us determine state values:
+
+## prevState
+
+`prev` is a required aspect and is associated with the variable within the useState( ) process. Aka: **prev = previous State.**
+
+- This allows us to view the previous value within the variable and run the process like before.
+  - Currently it doesn't seem to do much more for us; however, it does provide us with the ability to handle our data in a different way.
+  - We can know take in our value and manipulate it in different ways without needing to leave our function.
+
+ex: with prevCount
+
+```jsx
+const countUp = () => {
+  // setCount(count + 1);
+  setCount((prevCount) => prevCount + 1);
+};
+```
