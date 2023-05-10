@@ -297,3 +297,54 @@ const countUp = () => {
   setCount((prevCount) => prevCount + 1);
 };
 ```
+
+<br>
+
+# onChange & onSubmit Events
+
+Just like our earlier form elements needed vanilla JS event listeners and event actions, React JSX components that have forms need to handle them as well.
+
+> <br>
+>
+> ### Why do we care about forms...?
+>
+> Forms are our login/sign up page content, our profile set up experience, our textbox that sends a message in a chat, or our way of creating a space for the user to make a post(like on Instagram/FB/Reddit).
+>
+> Forms are how we as developers create a client side interaction with the user where they give us data/answers to the questions we ask.
+>
+> That's how we make a place for them to provide us with the details the server data needs to make a Movie or Message or Chat Room in our corresponding databases.
+>
+> <br>
+> <br>
+
+onChange & onSubmit
+
+- A SyntheticEvent that mimics DOM events.
+- In this case, when something _changes_ or when a form is _submitted_.
+
+<br>
+
+## handleChange()
+
+We want to capture the values for the submitted form(the values from the input fields):
+
+- We can use **state** to store our data.
+- We can do this with an **onChange** event.
+- Each time a user types into our input field, it will "change" and trigger a function that we will create to manage our input data.
+
+**onChange**: This triggers an anonymous function that passes the event through it.
+
+- This event allows us access to the targets value.
+
+<br>
+
+## handleSubmit()
+
+We want to create a function to trigger when a submit event happens.
+
+**onSubmit**: An event handler function to trigger when a submit event takes place on a form.
+
+- Submit event fires on the form element itself when the user clicks a submit button or presses enter while editing a field.
+- [MDN Web Docs FormElement: submit event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event)
+
+Our submit event is usually how we trigger a push/addition to local front end data _or_ call to our servers to send off the information to be processed and added to the DB by the server.
