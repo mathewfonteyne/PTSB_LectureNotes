@@ -12,6 +12,8 @@ const movies = require("./controllers/movie.controller");
 
 // -------------------- Middleware: ----------------
 const validateSession = require("./middleware/validate-session");
+// Adding cors() to handle the preflight request for us (something Postman did for us), this is part of our server middleware required and called in the app.js
+const cors = require("cors");
 
 // Require in the mongoose middleware, pulled/used from node_modules
 const mongoose = require("mongoose");
@@ -37,6 +39,8 @@ db.once("open", () => log(`Connected: ${MONGO}`));
 
 // Added to allow us to accept JSON data from the body of our client.
 app.use(express.json());
+// Allowing the app to use cors
+app.use(cors());
 
 // -------------- Routes to Controllers ----------------
 // http://localhost:4000/user
