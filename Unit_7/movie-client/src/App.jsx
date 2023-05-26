@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Auth from "./components/auth/Auth";
 import MovieIndex from "./components/movie/MovieIndex";
+import MovieEdit from "./components/movie/MovieEdit";
 
 function App() {
   // Use useState to house token
@@ -30,6 +31,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Auth updateToken={updateToken} />} />
         <Route path="/movie" element={<MovieIndex token={sessionToken} />} />
+        <Route
+          path="/movie/update/:id"
+          element={<MovieEdit token={sessionToken} />}
+        />
       </Routes>
     </div>
   );

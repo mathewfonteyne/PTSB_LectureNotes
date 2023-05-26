@@ -83,7 +83,9 @@ export default function MovieCreate(props) {
       const res = await fetch(url, requestOption);
       const data = await res.json();
 
-      console.log(data);
+      // console.log(data);
+      // Call the fetchMovieS function via props to refresh our table after movie is added
+      props.fetchMovies();
     } catch (err) {
       console.error(err);
     }
