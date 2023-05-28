@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import {
   Col,
   Container,
@@ -19,6 +19,8 @@ export default function MovieEdit(props) {
   const [movieRating, setMovieRating] = useState("");
   const [movieLength, setMovieLength] = useState("");
   const [movieReleased, setMovieReleased] = useState("");
+
+  const navigate = useNavigate();
 
   // Code for form inputs (form data)
   let ratings = [null, "G", "PG", "PG-13", "NC-17", "R"];
@@ -58,9 +60,75 @@ export default function MovieEdit(props) {
     );
   };
 
-  // handleSubmit to run fetch etc.
+  // Declare url outside of fetches, same endpoint but different methods
+  const url = `http://localhost:4000/movies/${id}`;
+
+  // Build a fetch to our GET movie by id endpoint
+  // Get movie details so we know what we need to change
+  const fetchMovies = async () => {
+    const requestOptions = {
+      method: "GET",
+      headers: new Headers({
+        Authorization: props.token,
+      }),
+    };
+
+    try {
+      const res = await fetch(url, requestOptions);
+      const data = await res.json();
+      //   console.log(data);
+      // Dive into data from the fetch with obj deconstruction
+      const { title, genre, length, rating, releaseYear } = data.getMovie;
+
+      // Set the base state movie values with that data, movie data pre-patching
+      setMovieTitle(title);
+      setMovieGenre(genre);
+      setMovieLength(length);
+      setMovieRating(rating);
+      setMovieReleased(releaseYear);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // Use useEffect to make sure if the program reloads, we still get the movie
+  useEffect(() => {
+    if (props.token) {
+      fetchMovies();
+    }
+  }, [props.token]);
+
+  // handleSubmit to run fetch: fetch to our PATCH endpoint
   async function handleSubmit(e) {
     e.preventDefault();
+
+    // bodyObj is the req.body that the server needs for patch
+    let bodyObj = JSON.stringify({
+      title: movieTitle,
+      genre: movieGenre,
+      length: movieLength,
+      rating: movieRating,
+      releaseYear: movieReleased,
+    });
+
+    // Sending our token off through headers, our bodyObj, and the method PATCH for the endpoint
+    const requestOptions = {
+      headers: new Headers({
+        Authorization: props.token,
+        "Content-Type": "application/json",
+      }),
+      body: bodyObj,
+      method: "PATCH",
+    };
+
+    try {
+      const res = await fetch(url, requestOptions);
+      const data = await res.json();
+      //   console.log(data);
+      // Use navigate on the button to back to the table view
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
@@ -72,11 +140,16 @@ export default function MovieEdit(props) {
         <Row>
           <Col md="4">
             <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
-              sequi tempore vitae cupiditate blanditiis, a asperiores veniam
-              explicabo totam nam exercitationem fuga illum, officia tempora
-              dignissimos amet? Placeat, blanditiis. Saepe.
+              <b>{movieTitle}</b>:
+              <br />A {movieGenre} movie rated {movieRating} that runs{" "}
+              {movieLength} minutes was released in {movieReleased}.
+              <br /> What needs to be changed?
             </p>
+            <FullButton>
+              <Button color="info" outline onClick={() => navigate(`/movie`)}>
+                Back to Table
+              </Button>
+            </FullButton>
           </Col>
           <Col md="8">
             <Form onSubmit={handleSubmit}>
@@ -132,7 +205,7 @@ export default function MovieEdit(props) {
                 {yearRange()}
               </FormGroup>
               <FullButton>
-                <Button color="success">Add Movie</Button>
+                <Button color="success">Update Movie</Button>
               </FullButton>
             </Form>
           </Col>

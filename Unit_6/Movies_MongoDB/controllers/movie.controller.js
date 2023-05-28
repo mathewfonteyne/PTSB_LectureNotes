@@ -67,11 +67,19 @@ router.get("/:id", async (req, res) => {
     const getMovie = await Movie.findOne({ _id: id });
 
     // Response message
-    if (!movie) throw new Error("No Movie Found!");
-    res.status(200).json({
-      message: `${getMovie.title} was found!`,
-      getMovie,
-    });
+    // if (!movie) throw new Error("No Movie Found!");
+    // res.status(200).json({
+    //   message: `${getMovie.title} was found!`,
+    //   getMovie,
+    // });
+    getMovie
+      ? res.status(200).json({
+          msg: `${getMovie.title} was found!`,
+          getMovie,
+        })
+      : res.status(404).json({
+          message: "No movie found.",
+        });
   } catch (err) {
     errorResponse(res, err);
   }
